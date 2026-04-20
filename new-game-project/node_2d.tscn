@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://4pqund3nukl7"]
+
+[ext_resource type="Script" uid="uid://bss4mgihbqfdc" path="res://character_body_2d.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_epypp"]
+[ext_resource type="Script" uid="uid://dm28cyo22gl5o" path="res://static_body_2d_2.gd" id="3_epypp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(123, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
+size = Vector2(124, 119)
+
+[node name="Node2D" type="Node2D" unique_id=2086937910]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=58440280]
+position = Vector2(492, 269)
+script = ExtResource("1_0e48y")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1425396882]
+texture = ExtResource("2_epypp")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D" unique_id=495274875]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D" unique_id=2041733888]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CharacterBody2D" unique_id=285438723]
+
+[node name="Label" type="Label" parent="CharacterBody2D/CanvasLayer" unique_id=1748449605]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1040206351 groups=["Item"]]
+position = Vector2(920, 293)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1239936549]
+modulate = Color(0.18039216, 1, 0.19215687, 1)
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2042660642]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_q6r6c")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=31002478 groups=["Change"]]
+position = Vector2(1052, 501)
+script = ExtResource("3_epypp")
+to_level = "res://level_2.tscn"
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=390067596]
+modulate = Color(0.999464, 0.44120362, 0.4000868, 1)
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2122914149]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_q6r6c")
+
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
